@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        
+        
+
+      
+        
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            gap: 10px;
+        }
+
+        button {
+            padding: 20px;
+            font-size: 18px;
+            
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        .operacao {
+            background-color: #ff9f00;
+            color: white;
+        }
+
+        .igual {
+            background-color: #4CAF50;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .limpar {
+            background-color: #ff4747;
+            color: white;
+            grid-column: span 2;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" id="display" class="display" disabled />
+        <div class="buttons">
+            <button onclick="adicionarValor('7')">7</button>
+            <button onclick="adicionarValor('8')">8</button>
+            <button onclick="adicionarValor('9')">9</button>
+            <button onclick="adicionarOperacao('+')" class="operacao">+</button>
+
+            <button onclick="adicionarValor('4')">4</button>
+            <button onclick="adicionarValor('5')">5</button>
+            <button onclick="adicionarValor('6')">6</button>
+            <button onclick="adicionarOperacao('-')" class="operacao">-</button>
+
+            <button onclick="adicionarValor('1')">1</button>
+            <button onclick="adicionarValor('2')">2</button>
+            <button onclick="adicionarValor('3')">3</button>
+            <button onclick="adicionarOperacao('*')" class="operacao">*</button>
+
+            <button onclick="adicionarValor('0')">0</button>
+            <button onclick="adicionarValor('.')">.</button>
+            <button onclick="calcular()" class="igual">=</button>
+            <button onclick="adicionarOperacao('/')" class="operacao">/</button>
+
+            <button onclick="limpar()" class="limpar" colspan="2">C</button>
+        </div>
+    </div>
+
+    <script>
+        let expressao = '';
+
+        function adicionarValor(valor) {
+            expressao += valor;
+            document.getElementById('display').value = expressao;
+        }
+
+        function adicionarOperacao(operacao) {
+            expressao += ' ' + operacao + ' ';
+            document.getElementById('display').value = expressao;
+        }
+
+        function calcular() {
+            try {
+                expressao = eval(expressao);
+                document.getElementById('display').value = expressao;
+            } catch (e) {
+                document.getElementById('display').value = 'Erro';
+                expressao = '';
+            }
+        }
+
+        function limpar() {
+            expressao = '';
+            document.getElementById('display').value = '';
+        }
+    </script>
+</body>
+</html>
